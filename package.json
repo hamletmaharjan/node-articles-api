@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/index.js --watch src"
+    "start": "nodemon ./src/index.js --watch src",
+    "migrate": "knex migrate:latest --knexfile src/knexfile.js",
+    "knex": "knex --knexfile src/knexfile.js"
   },
   "author": "",
   "license": "ISC",
