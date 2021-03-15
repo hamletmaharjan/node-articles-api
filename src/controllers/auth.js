@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 const userService = require('../services/userService');
 
-
+const secretKey = process.env.SECRET_KEY;
 
 exports.login = (req, res, next) => {
     userService.fetchUserByEmail(req.body.email)
@@ -12,7 +13,7 @@ exports.login = (req, res, next) => {
         infos.id = data.id;
         infos.email = data.email;
         infos.role = data.role;
-        const token = jwt.sign(infos, 'shh');
+        const token = jwt.sign(infos, secretKey);
         res.json({id:data.id,  token: token , name: data.name, username: data.username, auth: true});
         // res.json(data );
       } else {
